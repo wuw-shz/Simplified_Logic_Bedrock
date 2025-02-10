@@ -1,0 +1,46 @@
+{
+	"type": "minecraftBedrock",
+	"name": "Logic Gates By Mr. Nadeau",
+	"namespace": "ican",
+	"authors": [
+		"mr_nadeau"
+	],
+	"targetVersion": "1.19.80",
+	"description": "Logic Gates By Mr. Nadeau",
+	"experimentalGameplay": {
+		"creationOfCustomBiomes": false,
+		"upcomingCreatorFeatures": false,
+		"enableGameTestFramework": false,
+		"focusTargetCamera": false,
+		"dataDrivenJigsawStructures": false,
+		"aimAssist": false,
+		"educationEdition": false
+	},
+	"bdsProject": false,
+	"packs": {
+		"behaviorPack": "./BP",
+		"resourcePack": "./RP"
+	},
+	"worlds": [
+		"./worlds/*"
+	],
+	"compiler": {
+		"plugins": [
+			"generatorScripts",
+			"typeScript",
+			"entityIdentifierAlias",
+			"customEntityComponents",
+			"customItemComponents",
+			"customBlockComponents",
+			"customCommands",
+			"moLang",
+			"formatVersionCorrection",
+			[
+				"simpleRewrite",
+				{
+					"packName": "Logic Gates By Mr. Nadeau"
+				}
+			]
+		]
+	}
+}

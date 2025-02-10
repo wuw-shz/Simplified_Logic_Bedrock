@@ -1,0 +1,162 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.not_gate",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 1.5,
+				"visible_bounds_offset": [
+					0,
+					0.25,
+					0
+				]
+			},
+			"bones": [
+				{
+					"name": "basic_gate",
+					"pivot": [
+						7,
+						0,
+						-7
+					],
+					"cubes": [
+						{
+							"origin": [
+								-8,
+								0,
+								-8
+							],
+							"size": [
+								16,
+								2,
+								16
+							],
+							"uv": [
+								0,
+								0
+							]
+						}
+					]
+				},
+				{
+					"name": "SmallTorch",
+					"parent": "basic_gate",
+					"pivot": [
+						0,
+						2,
+						-4
+					],
+					"cubes": [
+						{
+							"origin": [
+								-1,
+								3,
+								-5
+							],
+							"size": [
+								2,
+								2,
+								2
+							],
+							"uv": [
+								16,
+								18
+							]
+						},
+						{
+							"origin": [
+								-1,
+								2,
+								-5
+							],
+							"size": [
+								2,
+								1,
+								2
+							],
+							"uv": [
+								8,
+								23
+							]
+						}
+					]
+				},
+				{
+					"name": "BigTorch1",
+					"parent": "basic_gate",
+					"pivot": [
+						0,
+						5,
+						4
+					],
+					"cubes": [
+						{
+							"origin": [
+								-1,
+								2,
+								3
+							],
+							"size": [
+								2,
+								3,
+								2
+							],
+							"uv": [
+								0,
+								18
+							]
+						},
+						{
+							"origin": [
+								-1,
+								5,
+								3
+							],
+							"size": [
+								2,
+								2,
+								2
+							],
+							"uv": [
+								16,
+								22
+							]
+						}
+					]
+				}
+			],
+			"item_display_transforms": {
+				"thirdperson_righthand": {
+					"rotation": [
+						0,
+						0,
+						0
+					],
+					"translation": [
+						13,
+						0,
+						0
+					],
+					"scale": [
+						1,
+						1,
+						1
+					],
+					"rotation_pivot": [
+						0,
+						0,
+						0
+					],
+					"scale_pivot": [
+						0,
+						0,
+						0
+					]
+				}
+			}
+		}
+	]
+}

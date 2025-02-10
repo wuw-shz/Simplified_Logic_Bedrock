@@ -1,0 +1,74 @@
+{
+	"format_version": "1.19.50",
+	"minecraft:block": {
+		"description": {
+			"identifier": "ican:d_flipflop",
+			"properties": {
+				"ican:facing_direction": [
+					0,
+					1,
+					2,
+					3
+				],
+				"ican:clkEnabled": {
+					"type": "boolean",
+					"values": [
+						false,
+						true
+					],
+					"default": false
+				},
+				"ican:inputEnabled": {
+					"type": "boolean",
+					"values": [
+						false,
+						true
+					],
+					"default": false
+				},
+				"ican:output": {
+					"type": "boolean",
+					"values": [
+						false,
+						true
+					],
+					"default": false
+				}
+			}
+		},
+		"components": {
+			"minecraft:geometry": "geometry.d_flipflop",
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "ican_d_flipflop_off",
+					"render_method": "alpha_test"
+				}
+			},
+			"minecraft:collision_box": {
+				"size": [
+					16,
+					8,
+					16
+				]
+			},
+			"minecraft:selection_box": {
+				"size": [
+					16,
+					8,
+					16
+				]
+			},
+			"minecraft:tick": {
+				"interval_range": [
+					1,
+					1
+				],
+				"looping": true
+			},
+			"minecraft:custom_components": [
+				"ican:directional_block",
+				"ican:trigger_output"
+			]
+		}
+	}
+}

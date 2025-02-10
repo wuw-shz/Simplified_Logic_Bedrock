@@ -1,0 +1,9 @@
+tile.ican:and_gate.name=AND Gate
+tile.ican:not_gate.name=NOT Gate
+tile.ican:or_gate.name=OR Gate
+tile.ican:nand_gate.name=NAND Gate
+tile.ican:nor_gate.name=NOR Gate
+tile.ican:xor_gate.name=XOR Gate
+tile.ican:xnor_gate.name=XNOR Gate
+tile.ican:redstone_clock.name=Redstone Clock
+tile.ican:d_flipflop.name=D Flip-Flop

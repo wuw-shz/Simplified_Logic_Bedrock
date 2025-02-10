@@ -1,0 +1,98 @@
+{
+	"num_mip_levels": 4,
+	"padding": 8,
+	"resource_pack_name": "Logic Gates By Mr. Nadeau",
+	"texture_name": "atlas.terrain",
+	"texture_data": {
+		"ican_and_gate_off": {
+			"textures": "textures/blocks/and/AND_OFF"
+		},
+		"ican_and_gate_left": {
+			"textures": "textures/blocks/and/AND_LEFT"
+		},
+		"ican_and_gate_right": {
+			"textures": "textures/blocks/and/AND_RIGHT"
+		},
+		"ican_and_gate_on": {
+			"textures": "textures/blocks/and/AND_ON"
+		},
+		"ican_not_gate_off": {
+			"textures": "textures/blocks/not/NOT_OFF"
+		},
+		"ican_not_gate_on": {
+			"textures": "textures/blocks/not/NOT_ON"
+		},
+		"ican_or_gate_off": {
+			"textures": "textures/blocks/or/OR_OFF"
+		},
+		"ican_or_gate_left": {
+			"textures": "textures/blocks/or/OR_LEFT"
+		},
+		"ican_or_gate_right": {
+			"textures": "textures/blocks/or/OR_RIGHT"
+		},
+		"ican_or_gate_on": {
+			"textures": "textures/blocks/or/OR_ON"
+		},
+		"ican_nand_gate_off": {
+			"textures": "textures/blocks/nand/NAND_OFF"
+		},
+		"ican_nand_gate_left": {
+			"textures": "textures/blocks/nand/NAND_LEFT"
+		},
+		"ican_nand_gate_right": {
+			"textures": "textures/blocks/nand/NAND_RIGHT"
+		},
+		"ican_nand_gate_on": {
+			"textures": "textures/blocks/nand/NAND_ON"
+		},
+		"ican_nor_gate_off": {
+			"textures": "textures/blocks/nor/NOR_OFF"
+		},
+		"ican_nor_gate_left": {
+			"textures": "textures/blocks/nor/NOR_LEFT"
+		},
+		"ican_nor_gate_right": {
+			"textures": "textures/blocks/nor/NOR_RIGHT"
+		},
+		"ican_nor_gate_on": {
+			"textures": "textures/blocks/nor/NOR_ON"
+		},
+		"ican_xor_gate_off": {
+			"textures": "textures/blocks/xor/XOR_OFF"
+		},
+		"ican_xor_gate_left": {
+			"textures": "textures/blocks/xor/XOR_LEFT"
+		},
+		"ican_xor_gate_right": {
+			"textures": "textures/blocks/xor/XOR_RIGHT"
+		},
+		"ican_xor_gate_on": {
+			"textures": "textures/blocks/xor/XOR_ON"
+		},
+		"ican_xnor_gate_off": {
+			"textures": "textures/blocks/xnor/XNOR_OFF"
+		},
+		"ican_xnor_gate_left": {
+			"textures": "textures/blocks/xnor/XNOR_LEFT"
+		},
+		"ican_xnor_gate_right": {
+			"textures": "textures/blocks/xnor/XNOR_RIGHT"
+		},
+		"ican_xnor_gate_on": {
+			"textures": "textures/blocks/xnor/XNOR_ON"
+		},
+		"ican_redstone_clock_off": {
+			"textures": "textures/blocks/clock/CLOCK_OFF"
+		},
+		"ican_redstone_clock_idle": {
+			"textures": "textures/blocks/clock/CLOCK_IDLE"
+		},
+		"ican_redstone_clock_on": {
+			"textures": "textures/blocks/clock/CLOCK_ON"
+		},
+		"ican_d_flipflop_off": {
+			"textures": "textures/blocks/dflip/DFLIPFLOP_OFF"
+		}
+	}
+}

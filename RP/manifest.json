@@ -1,0 +1,42 @@
+{
+	"format_version": 2,
+	"metadata": {
+		"authors": [
+			"mr_nadeau"
+		],
+		"generated_with": {
+			"bridge": [
+				"2.7.42"
+			],
+			"dash": [
+				"0.11.7"
+			]
+		}
+	},
+	"header": {
+		"name": "Logic Gates By Mr. Nadeau",
+		"description": "Logic Gates By Mr. Nadeau",
+		"min_engine_version": [
+			1,
+			19,
+			80
+		],
+		"uuid": "4968660a-0812-4201-85ab-24ba72a4a62d",
+		"version": [
+			1,
+			0,
+			0
+		]
+	},
+	"modules": [
+		{
+			"type": "resources",
+			"uuid": "fa508940-39ec-4972-af85-1afc0c7ea430",
+			"version": [
+				1,
+				0,
+				0
+			]
+		}
+	]
+}

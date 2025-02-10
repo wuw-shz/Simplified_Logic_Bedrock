@@ -1,0 +1,165 @@
+{
+	"format_version": "1.19.80",
+	"minecraft:block": {
+		"description": {
+			"identifier": "ican:xor_gate",
+			"menu_category": {
+				"category": "items"
+			},
+			"properties": {
+				"ican:facing_direction": [
+					0,
+					1,
+					2,
+					3
+				],
+				"ican:leftEnabled": {
+					"type": "boolean",
+					"values": [
+						false,
+						true
+					],
+					"default": false
+				},
+				"ican:rightEnabled": {
+					"type": "boolean",
+					"values": [
+						false,
+						true
+					],
+					"default": false
+				},
+				"ican:output": {
+					"type": "boolean",
+					"values": [
+						false,
+						true
+					],
+					"default": false
+				}
+			}
+		},
+		"components": {
+			"minecraft:geometry": "geometry.basic_gate",
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "ican_xor_gate_off",
+					"render_method": "alpha_test"
+				}
+			},
+			"minecraft:collision_box": {
+				"size": [
+					16,
+					8,
+					16
+				]
+			},
+			"minecraft:selection_box": {
+				"size": [
+					16,
+					8,
+					16
+				]
+			},
+			"minecraft:tick": {
+				"interval_range": [
+					1,
+					1
+				],
+				"looping": true
+			},
+			"minecraft:custom_components": [
+				"ican:directional_block",
+				"ican:redstone_directional",
+				"ican:xor_gate",
+				"ican:trigger_output"
+			]
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('ican:facing_direction') == 0",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							0,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('ican:facing_direction') == 1",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('ican:facing_direction') == 2",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('ican:facing_direction') == 3",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							270,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('ican:leftEnabled') == true",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ican_xor_gate_left",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 12
+				}
+			},
+			{
+				"condition": "q.block_state('ican:rightEnabled') == true",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ican_xor_gate_right",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 12
+				}
+			},
+			{
+				"condition": "q.block_state('ican:rightEnabled') == true && q.block_state('ican:leftEnabled') == true",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ican_xor_gate_on",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 12
+				}
+			}
+		]
+	}
+}
