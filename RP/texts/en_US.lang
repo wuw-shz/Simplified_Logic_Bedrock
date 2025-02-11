@@ -6,4 +6,5 @@ tile.ican:nor_gate.name=NOR Gate
 tile.ican:xor_gate.name=XOR Gate
 tile.ican:xnor_gate.name=XNOR Gate
 tile.ican:redstone_clock.name=Redstone Clock
-tile.ican:d_flipflop.name=D Flip-Flop
+tile.ican:d_flipflop.name=D Latch / Flip-Flop
+tile.ican:sr_flipflop.name=SR Latch / Flip-Flop

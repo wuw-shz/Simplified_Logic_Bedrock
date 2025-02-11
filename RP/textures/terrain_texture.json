@@ -91,8 +91,62 @@
 		"ican_redstone_clock_on": {
 			"textures": "textures/blocks/clock/CLOCK_ON"
 		},
-		"ican_d_flipflop_off": {
-			"textures": "textures/blocks/dflip/DFLIPFLOP_OFF"
+		"ican_d_flipflop_off_disable": {
+			"textures": "textures/blocks/dflip/DFLIPFLOP_OFF_DISABLE"
+		},
+		"ican_d_flipflop_off_enable": {
+			"textures": "textures/blocks/dflip/DFLIPFLOP_OFF_ENABLE"
+		},
+		"ican_d_flipflop_disable": {
+			"textures": "textures/blocks/dflip/DFLIPFLOP_DISABLE"
+		},
+		"ican_d_flipflop_enable": {
+			"textures": "textures/blocks/dflip/DFLIPFLOP_ENABLE"
+		},
+		"ican_d_flipflop_input_disable": {
+			"textures": "textures/blocks/dflip/DFLIPFLOP_INPUT_DISABLE"
+		},
+		"ican_d_flipflop_input_enable": {
+			"textures": "textures/blocks/dflip/DFLIPFLOP_INPUT_ENABLE"
+		},
+		"ican_sr_flipflop_off": {
+			"textures": "textures/blocks/srflip/SRFLIPFLOP_OFF"
+		},
+		"ican_sr_flipflop_left_off": {
+			"textures": "textures/blocks/srflip/SRFLIPFLOP_LEFT_OFF"
+		},
+		"ican_sr_flipflop_left_on": {
+			"textures": "textures/blocks/srflip/SRFLIPFLOP_LEFT_ON"
+		},
+		"ican_sr_flipflop_right_off": {
+			"textures": "textures/blocks/srflip/SRFLIPFLOP_RIGHT_OFF"
+		},
+		"ican_sr_flipflop_right_on": {
+			"textures": "textures/blocks/srflip/SRFLIPFLOP_RIGHT_ON"
+		},
+		"ican_sr_flipflop_both_off": {
+			"textures": "textures/blocks/srflip/SRFLIPFLOP_BOTH_OFF"
+		},
+		"ican_sr_flipflop_both_on": {
+			"textures": "textures/blocks/srflip/SRFLIPFLOP_BOTH_ON"
+		},
+		"ican_sr_flipflop_none_on": {
+			"textures": "textures/blocks/srflip/SRFLIPFLOP_NONE_ON"
+		},
+		"ican_sr_flipflop_enable_off": {
+			"textures": "textures/blocks/srflip/SRFLIPFLOP_ENABLE_OFF"
+		},
+		"ican_sr_flipflop_enable_on": {
+			"textures": "textures/blocks/srflip/SRFLIPFLOP_ENABLE_ON"
+		},
+		"ican_sr_flipflop_enable_left": {
+			"textures": "textures/blocks/srflip/SRFLIPFLOP_ENABLE_LEFT"
+		},
+		"ican_sr_flipflop_enable_right": {
+			"textures": "textures/blocks/srflip/SRFLIPFLOP_ENABLE_RIGHT"
+		},
+		"ican_sr_flipflop_enable_both": {
+			"textures": "textures/blocks/srflip/SRFLIPFLOP_ENABLE_BOTH"
 		}
 	}
 }

@@ -3,7 +3,7 @@
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.2in_flipflop",
+				"identifier": "geometry.3in_flipflop",
 				"texture_width": 64,
 				"texture_height": 64,
 				"visible_bounds_width": 3,
@@ -84,49 +84,6 @@
 					]
 				},
 				{
-					"name": "SmallTorch1",
-					"parent": "basic_gate",
-					"pivot": [
-						0,
-						2,
-						-6
-					],
-					"cubes": [
-						{
-							"origin": [
-								-1,
-								3,
-								-7
-							],
-							"size": [
-								2,
-								2,
-								2
-							],
-							"uv": [
-								40,
-								36
-							]
-						},
-						{
-							"origin": [
-								-1,
-								2,
-								-7
-							],
-							"size": [
-								2,
-								1,
-								2
-							],
-							"uv": [
-								0,
-								44
-							]
-						}
-					]
-				},
-				{
 					"name": "SmallTorch2",
 					"parent": "basic_gate",
 					"pivot": [
@@ -147,7 +104,7 @@
 								2
 							],
 							"uv": [
-								32,
+								40,
 								41
 							]
 						},
@@ -190,8 +147,8 @@
 								2
 							],
 							"uv": [
-								40,
-								40
+								24,
+								41
 							]
 						},
 						{
@@ -233,7 +190,7 @@
 								2
 							],
 							"uv": [
-								24,
+								32,
 								41
 							]
 						},
@@ -250,6 +207,49 @@
 							],
 							"uv": [
 								32,
+								36
+							]
+						}
+					]
+				},
+				{
+					"name": "BigTorch3",
+					"parent": "basic_gate",
+					"pivot": [
+						0,
+						5,
+						-6
+					],
+					"cubes": [
+						{
+							"origin": [
+								-1,
+								5,
+								-7
+							],
+							"size": [
+								2,
+								2,
+								2
+							],
+							"uv": [
+								0,
+								44
+							]
+						},
+						{
+							"origin": [
+								-1,
+								2,
+								-7
+							],
+							"size": [
+								2,
+								3,
+								2
+							],
+							"uv": [
+								40,
 								36
 							]
 						}

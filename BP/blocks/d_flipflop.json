@@ -1,8 +1,12 @@
 {
-	"format_version": "1.19.50",
+	"format_version": "1.19.80",
 	"minecraft:block": {
 		"description": {
 			"identifier": "ican:d_flipflop",
+			"menu_category": {
+				"category": "items",
+				"group": "itemGroup.name.flipflops"
+			},
 			"properties": {
 				"ican:facing_direction": [
 					0,
@@ -37,10 +41,10 @@
 			}
 		},
 		"components": {
-			"minecraft:geometry": "geometry.d_flipflop",
+			"minecraft:geometry": "geometry.2in_flipflop",
 			"minecraft:material_instances": {
 				"*": {
-					"texture": "ican_d_flipflop_off",
+					"texture": "ican_d_flipflop_off_disable",
 					"render_method": "alpha_test"
 				}
 			},
@@ -69,8 +73,131 @@
 				"ican:directional_block",
 				"ican:redstone_flip_directional",
 				"ican:trigger_inverse_output",
-				"ican:trigger_output"
+				"ican:trigger_output",
+				"ican:d_flipflop"
 			]
-		}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('ican:facing_direction') == 0",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							270,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('ican:facing_direction') == 1",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('ican:facing_direction') == 2",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							0,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('ican:facing_direction') == 3",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('ican:inputEnabled') == true && q.block_state('ican:output') == true",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ican_d_flipflop_input_enable",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 12
+				}
+			},
+			{
+				"condition": "q.block_state('ican:inputEnabled') == true && q.block_state('ican:output') == false",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ican_d_flipflop_input_disable",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 12
+				}
+			},
+			{
+				"condition": "q.block_state('ican:inputEnabled') == true && q.block_state('ican:clkEnabled') == true",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ican_d_flipflop_enable",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 15
+				}
+			},
+			{
+				"condition": "q.block_state('ican:inputEnabled') == false && q.block_state('ican:clkEnabled') == true",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ican_d_flipflop_disable",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 12
+				}
+			},
+			{
+				"condition": "q.block_state('ican:inputEnabled') == false && q.block_state('ican:clkEnabled') == false  && q.block_state('ican:output') == false",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ican_d_flipflop_off_disable",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 7
+				}
+			},
+			{
+				"condition": "q.block_state('ican:inputEnabled') == false && q.block_state('ican:clkEnabled') == false  && q.block_state('ican:output') == true",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ican_d_flipflop_off_enable",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 7
+				}
+			}
+		]
 	}
 }

@@ -1,4 +1,4 @@
-import { world, system } from "@minecraft/server";
+import { BlockPermutation, world, system } from "@minecraft/server";
 
 /** @type {import("@minecraft/server").BlockCustomComponent} */
 const redstoneFlipDirectionalComponent = {
@@ -117,20 +117,41 @@ const dFlipFlopComponent = {
     onTick(event) {
         let clock = event.block.permutation.getState("ican:clkEnabled");
         let input = event.block.permutation.getState("ican:inputEnabled");
-        if (clock == true) {
-            if (input == true) {
+        if (clock == true)
+            if (input == true)
                 event.block.setPermutation(event.block.permutation.withState("ican:output", true));
-            }
             else
-                event.block.setPermutation(event.block.permutation.withState("ican:output", true));
-        }
-
+                event.block.setPermutation(event.block.permutation.withState("ican:output", false));
     }
+
 }
 
 world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
     blockComponentRegistry.registerCustomComponent(
-        "ican:trigger_inverse_output",
-        triggerInverseOutputComponent
+        "ican:d_flipflop",
+        dFlipFlopComponent
+    );
+});
+
+/** @type {import("@minecraft/server").BlockCustomComponent} */
+const srFlipFlopComponent = {
+    onTick(event) {
+        let clock = event.block.permutation.getState("ican:inputEnabled");
+        let inputS = event.block.permutation.getState("ican:leftEnabled");
+        let inputR = event.block.permutation.getState("ican:rightEnabled");
+        if (clock == true) {
+            if (inputS == true && inputR == false)
+                event.block.setPermutation(event.block.permutation.withState("ican:output", true));
+            else if ((inputS != false && inputR != false) || (inputS == false && inputR == true))
+                event.block.setPermutation(event.block.permutation.withState("ican:output", false));
+        }
+    }
+
+}
+
+world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
+    blockComponentRegistry.registerCustomComponent(
+        "ican:sr_flipflop",
+        srFlipFlopComponent
     );
 });

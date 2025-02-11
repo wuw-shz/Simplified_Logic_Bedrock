@@ -4,7 +4,8 @@
 		"description": {
 			"identifier": "ican:nor_gate",
 			"menu_category": {
-				"category": "items"
+				"category": "items",
+				"group": "itemGroup.name.gates"
 			},
 			"properties": {
 				"ican:facing_direction": [

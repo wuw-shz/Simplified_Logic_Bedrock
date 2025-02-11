@@ -30,5 +30,8 @@
 	},
 	"ican:d_flipflop": {
 		"sound": "stone"
+	},
+	"ican:sr_flipflop": {
+		"sound": "stone"
 	}
 }
