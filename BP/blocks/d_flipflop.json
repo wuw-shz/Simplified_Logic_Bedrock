@@ -67,6 +67,8 @@
 			},
 			"minecraft:custom_components": [
 				"ican:directional_block",
+				"ican:redstone_flip_directional",
+				"ican:trigger_inverse_output",
 				"ican:trigger_output"
 			]
 		}
