@@ -1,4 +1,4 @@
-# SimplifiedLogic_Bedrock
+# Simplified_Logic_Bedrock
 I'm a computer science educator for young kids, and I wanted to teach them boolean algebra and logic gates.The problem: The regular way of making logic gates is multiple blocks in a specific configuration. Even if they are simple, small mistakes would lead to major time losses and would bog down the time we're supposed to be testing truth tables and boolean logic The solution: I made this addon that implements single-block logic gates. It works in both regular bedrock and the education edition preview (1.21.51 or later).
 
 Here's the download link:

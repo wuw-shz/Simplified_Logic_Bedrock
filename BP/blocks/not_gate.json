@@ -28,6 +28,26 @@
 						true
 					],
 					"default": false
+				},
+				"ican:delayLeftInput": {
+					"type": "integer",
+					"values": [
+						1,
+						2,
+						3,
+						4
+					],
+					"default": 1
+				},
+				"ican:delayRightInput": {
+					"type": "integer",
+					"values": [
+						1,
+						2,
+						3,
+						4
+					],
+					"default": 1
 				}
 			}
 		},
@@ -60,7 +80,6 @@
 				],
 				"looping": true
 			},
-			"minecraft:light_emission": 7,
 			"minecraft:custom_components": [
 				"ican:directional_block",
 				"ican:redstone_single_directional",

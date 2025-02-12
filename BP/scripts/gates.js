@@ -1,7 +1,7 @@
 import { BlockPermutation, system, world } from "@minecraft/server";
 
 /**
- * UTILITY FUNCTIONSs
+ * UTILITY FUNCTIONS
  */
 
 /**
@@ -56,7 +56,6 @@ const redstoneSingleDirectionalMap = {
     2: "east",
     3: "west",
 };
-
 
 /**
  * COMPONENTS

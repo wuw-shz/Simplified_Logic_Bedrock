@@ -132,6 +132,7 @@
 				],
 				"looping": true
 			},
+			"minecraft:light_emission": 15,
 			"minecraft:custom_components": [
 				"ican:directional_block",
 				"ican:trigger_output",
@@ -197,8 +198,7 @@
 							"texture": "ican_redstone_clock_on",
 							"render_method": "alpha_test"
 						}
-					},
-					"minecraft:light_emission": 15
+					}
 				}
 			},
 			{
@@ -209,8 +209,7 @@
 							"texture": "ican_redstone_clock_idle",
 							"render_method": "alpha_test"
 						}
-					},
-					"minecraft:light_emission": 10
+					}
 				}
 			}
 		]
