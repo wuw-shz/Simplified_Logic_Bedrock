@@ -154,7 +154,6 @@ world.beforeEvents.playerBreakBlock.subscribe(event => {
 
 /**
  * AND GATE
- * THE FOLLOWING ONLY APPLY TO THE AND GATE
  * @type {import("@minecraft/server").BlockCustomComponent}
  */
 const andGateComponent = {
@@ -168,7 +167,6 @@ const andGateComponent = {
 
 /**
  * OR GATE
- * THE FOLLOWING ONLY APPLY TO THE OR GATE
  * @type {import("@minecraft/server").BlockCustomComponent}
  */
 const orGateComponent = {
@@ -182,7 +180,6 @@ const orGateComponent = {
 
 /**
  * NAND GATE
- * THE FOLLOWING ONLY APPLY TO THE NAND GATE
  * @type {import("@minecraft/server").BlockCustomComponent}
  */
 const nandGateComponent = {
@@ -196,7 +193,6 @@ const nandGateComponent = {
 
 /**
  * NOR GATE
- * THE FOLLOWING ONLY APPLY TO THE NOR GATE
  * @type {import("@minecraft/server").BlockCustomComponent}
  */
 const norGateComponent = {
@@ -210,7 +206,6 @@ const norGateComponent = {
 
 /**
  * XOR GATE
- * THE FOLLOWING ONLY APPLY TO THE XOR GATE
  * @type {import("@minecraft/server").BlockCustomComponent}
  */
 const xorGateComponent = {
@@ -224,7 +219,6 @@ const xorGateComponent = {
 
 /**
  * XNOR GATE
- * THE FOLLOWING ONLY APPLY TO THE XNOR GATE
  * @type {import("@minecraft/server").BlockCustomComponent}
  */
 const xnorGateComponent = {
@@ -238,7 +232,6 @@ const xnorGateComponent = {
 
 /**
  * NOT GATE
- * THE FOLLOWING ONLY APPLY TO THE XNOR GATE
  * @type {import("@minecraft/server").BlockCustomComponent}
  */
 const notGateComponent = {
