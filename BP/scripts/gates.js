@@ -255,9 +255,22 @@ const redstoneSingleDirectionalComponent = {
         const block = event.block;
         const direction = getBlockState(block, "ican:facing_direction");
         const side = redstoneSingleDirectionalMap[direction];
-        if (side) {
-            const inputEnabled = getRedstoneState(block, side);
-            updateBlockState(block, "ican:inputEnabled", inputEnabled);
+        if (!side) return
+
+        // SINGLE INPUT
+        const inputEnabled = getRedstoneState(block, side);
+        let delayInput = getBlockState(block, "ican:delayInput");
+        if (inputEnabled) {
+            updateBlockState(block, "ican:inputEnabled", true);
+            updateBlockState(block, "ican:delayInput", 1);
+        } else {
+            if (delayInput < 4) {
+                delayInput++;
+            }
+            if (delayInput >= 4) {
+                updateBlockState(block, "ican:inputEnabled", false);
+            }
+            updateBlockState(block, "ican:delayInput", delayInput);
         }
     }
 };

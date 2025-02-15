@@ -29,17 +29,7 @@
 					],
 					"default": false
 				},
-				"ican:delayLeftInput": {
-					"type": "integer",
-					"values": [
-						1,
-						2,
-						3,
-						4
-					],
-					"default": 1
-				},
-				"ican:delayRightInput": {
+				"ican:delayInput": {
 					"type": "integer",
 					"values": [
 						1,
