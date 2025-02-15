@@ -37,6 +37,26 @@
 						true
 					],
 					"default": false
+				},
+				"ican:delayLeftInput": {
+					"type": "integer",
+					"values": [
+						1,
+						2,
+						3,
+						4
+					],
+					"default": 1
+				},
+				"ican:delayRightInput": {
+					"type": "integer",
+					"values": [
+						1,
+						2,
+						3,
+						4
+					],
+					"default": 1
 				}
 			}
 		},
@@ -133,8 +153,7 @@
 							"texture": "ican_or_gate_left",
 							"render_method": "alpha_test"
 						}
-					},
-					"minecraft:light_emission": 12
+					}
 				}
 			},
 			{
@@ -145,8 +164,7 @@
 							"texture": "ican_or_gate_right",
 							"render_method": "alpha_test"
 						}
-					},
-					"minecraft:light_emission": 12
+					}
 				}
 			},
 			{
@@ -157,8 +175,7 @@
 							"texture": "ican_or_gate_on",
 							"render_method": "alpha_test"
 						}
-					},
-					"minecraft:light_emission": 15
+					}
 				}
 			}
 		]

@@ -37,6 +37,26 @@
 						true
 					],
 					"default": false
+				},
+				"ican:delayLeftInput": {
+					"type": "integer",
+					"values": [
+						1,
+						2,
+						3,
+						4
+					],
+					"default": 1
+				},
+				"ican:delayRightInput": {
+					"type": "integer",
+					"values": [
+						1,
+						2,
+						3,
+						4
+					],
+					"default": 1
 				}
 			}
 		},
@@ -69,7 +89,6 @@
 				],
 				"looping": true
 			},
-			"minecraft:light_emission": 7,
 			"minecraft:custom_components": [
 				"ican:directional_block",
 				"ican:redstone_directional",
@@ -134,8 +153,7 @@
 							"texture": "ican_nor_gate_left",
 							"render_method": "alpha_test"
 						}
-					},
-					"minecraft:light_emission": 7
+					}
 				}
 			},
 			{
@@ -146,8 +164,7 @@
 							"texture": "ican_nor_gate_right",
 							"render_method": "alpha_test"
 						}
-					},
-					"minecraft:light_emission": 7
+					}
 				}
 			},
 			{
@@ -158,8 +175,7 @@
 							"texture": "ican_nor_gate_on",
 							"render_method": "alpha_test"
 						}
-					},
-					"minecraft:light_emission": 12
+					}
 				}
 			}
 		]

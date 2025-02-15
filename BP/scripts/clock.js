@@ -1,132 +1,195 @@
-import { world, Block, system } from "@minecraft/server";
+import { world, system } from "@minecraft/server";
 import { ModalFormData } from "@minecraft/server-ui";
 
-/** @type {import("@minecraft/server").BlockCustomComponent} */
+/**
+ * UTILITY FUNCTIONS
+ */
+
+/**
+ * @param {import("@minecraft/server").Block} block
+ * @param {string} key
+ * @param {string | number | boolean | undefined} value
+ */
+function updateBlockState(block, key, value) {
+    const newPermutation = block.permutation.withState(key, value);
+    block.setPermutation(newPermutation);
+}
+
+/**
+ * @param {import("@minecraft/server").Block} block 
+ * @param {string} key 
+ * @returns {string | number | boolean | undefined}
+ */
+function getBlockState(block, key) {
+    return block.permutation.getState(key);
+}
+
+/**
+ * @param {number} value
+ * @returns {{ multiplier: number, multiple: boolean }}
+ */
+function processSliderValue(value) {
+    if (value < 10) {
+        return { multiplier: value, multiple: false };
+    } else {
+        return { multiplier: Math.floor(value / 10), multiple: true };
+    }
+}
+
+/**
+ * @param {import("@minecraft/server").Block} block 
+ * @returns {boolean}
+ */
+function isClockActive(block) {
+    return getBlockState(block, "ican:enabled") ||
+        (getBlockState(block, "ican:enabledByRedstone") && getBlockState(block, "ican:inputEnabled"));
+}
+
+/**
+ * @param {import("@minecraft/server").Block} block 
+ */
+function stopClock(block) {
+    if (!block) return
+    updateBlockState(block, "ican:output", false);
+    updateBlockState(block, "ican:running", false);
+}
+
+/**
+ * @param {number} duration
+ * @returns {Promise<void>}
+ */
+function delay(duration) {
+    return new Promise(resolve => system.runTimeout(resolve, duration));
+}
+
+/**
+ * @param {import("@minecraft/server").Block} block 
+ * @param {number} duration
+ */
+async function runClockCycle(block, duration) {
+    if (!isClockActive(block)) {
+        stopClock(block);
+        return;
+    }
+    updateBlockState(block, "ican:output", true);
+
+    const cancelPromise = new Promise(resolve => {
+        const checkInterval = system.runInterval(() => {
+            if (!block || !isClockActive(block)) {
+                system.clearRun(checkInterval);
+                resolve('cancelled');
+            }
+        });
+    });
+
+    await Promise.race([delay(duration), cancelPromise]);
+
+    if (!isClockActive(block)) {
+        stopClock(block);
+        return;
+    }
+    updateBlockState(block, "ican:output", false);
+}
+
+/**
+ * @param {import("@minecraft/server").Block} block 
+ */
+function clockActivate(block) {
+    if (!isClockActive(block)) {
+        stopClock(block);
+        return;
+    }
+    const baseInterval = getBlockState(block, "ican:iSingleMultiplier");
+    const baseDuration = getBlockState(block, "ican:dSingleMultiplier");
+    const effectiveInterval = getBlockState(block, "ican:iMultipleOfTen") ? baseInterval * 10 : baseInterval;
+    const effectiveDuration = getBlockState(block, "ican:dMultipleOfTen") ? baseDuration * 10 : baseDuration;
+    const units = getBlockState(block, "ican:units");
+
+    const runId = system.runInterval(async () => {
+        if (!isClockActive(block) || !block) {
+            stopClock(block);
+            system.clearRun(runId);
+            return;
+        }
+        await runClockCycle(block,
+            units ? effectiveDuration : effectiveDuration * 20);
+    }, units ? effectiveInterval : effectiveInterval * 20);
+}
+
+/**
+ * COMPONENTS
+ */
+
+/** 
+ * @type {import("@minecraft/server").BlockCustomComponent}
+ */
 const rsClockMenuComponent = {
     onPlayerInteract(event) {
-        let currentEnable = event.block.permutation.getState("ican:enabled");
-        let currentREnable = event.block.permutation.getState("ican:enabledByRedstone");
-        let currentUnits = event.block.permutation.getState("ican:units");
-        let interval = event.block.permutation.getState("ican:iSingleMultiplier");
-        let duration = event.block.permutation.getState("ican:dSingleMultiplier");
-        if (event.block.permutation.getState("ican:iMultipleOfTen") == true)
-            interval = interval * 10;
-        if (event.block.permutation.getState("ican:dMultipleOfTen") == true)
-            duration = duration * 10;
-        let form = new ModalFormData();
-        form.title(`Advanced Redstone Clock`);
-        form.toggle(`Manual Enabled`, currentEnable);
-        form.toggle(`Redstone Enabled`, currentREnable);
-        form.toggle(`Seconds / Ticks`, currentUnits);
-        form.slider(`Interval (only <=6 or groups of 10 up to 60 will be stored)`, 1, 99, 1, interval);
-        form.slider(`Duration (only <=6 or groups of 10 up to 60 will be stored)`, 1, 99, 1, duration);
+        const block = event.block;
+
+        const currentEnabled = getBlockState(block, "ican:enabled");
+        const currentREnabled = getBlockState(block, "ican:enabledByRedstone");
+        const currentUnits = getBlockState(block, "ican:units");
+        let interval = getBlockState(block, "ican:iSingleMultiplier");
+        let duration = getBlockState(block, "ican:dSingleMultiplier");
+
+        if (getBlockState(block, "ican:iMultipleOfTen") === true) {
+            interval *= 10;
+        }
+        if (getBlockState(block, "ican:dMultipleOfTen") === true) {
+            duration *= 10;
+        }
+
+        const form = new ModalFormData()
+            .title("Advanced Redstone Clock")
+            .toggle("Manual Enabled", currentEnabled)
+            .toggle("Redstone Enabled", currentREnabled)
+            .toggle("Seconds / Ticks", currentUnits)
+            .slider("Interval (only <=6 or groups of 10 up to 60 will be stored)", 1, 99, 1, interval)
+            .slider("Duration (only <=6 or groups of 10 up to 60 will be stored)", 1, 99, 1, duration);
+
         form.show(event.player).then(response => {
             if (response.canceled) return;
-            event.block.setPermutation(event.block.permutation.withState("ican:enabled", false));
-            event.block.setPermutation(event.block.permutation.withState("ican:enabledByRedstone", false));
-            system.waitTicks(20).then(() => {
-                if ((response.formValues[3] / 10) % 10 == 0) {
-                    event.block.setPermutation(event.block.permutation.withState("ican:iSingleMultiplier", response.formValues[3] % 10));
-                }
-                else {
-                    event.block.setPermutation(event.block.permutation.withState("ican:iSingleMultiplier", (response.formValues[3] / 10) % 10));
-                    event.block.setPermutation(event.block.permutation.withState("ican:iMultipleOfTen", true));
-                }
 
-                if ((response.formValues[4] / 10) % 10 == 0) {
-                    event.block.setPermutation(event.block.permutation.withState("ican:dSingleMultiplier", response.formValues[4] % 10));
-                }
-                else {
-                    event.block.setPermutation(event.block.permutation.withState("ican:dSingleMultiplier", (response.formValues[4] / 10) % 10));
-                    event.block.setPermutation(event.block.permutation.withState("ican:dMultipleOfTen", true));
-                }
+            updateBlockState(block, "ican:enabled", false);
+            updateBlockState(block, "ican:enabledByRedstone", false);
 
-                event.block.setPermutation(event.block.permutation.withState("ican:enabled", response.formValues[0]));
-                event.block.setPermutation(event.block.permutation.withState("ican:enabledByRedstone", response.formValues[1]));
-                event.block.setPermutation(event.block.permutation.withState("ican:units", response.formValues[2]));
-                clockActivate(event.block, response.formValues[3], response.formValues[4]);
+            system.waitTicks(1).then(() => {
+                const intervalData = processSliderValue(response.formValues[3]);
+                updateBlockState(block, "ican:iSingleMultiplier", intervalData.multiplier);
+                updateBlockState(block, "ican:iMultipleOfTen", intervalData.multiple);
+
+                const durationData = processSliderValue(response.formValues[4]);
+                updateBlockState(block, "ican:dSingleMultiplier", durationData.multiplier);
+                updateBlockState(block, "ican:dMultipleOfTen", durationData.multiple);
+
+                updateBlockState(block, "ican:enabled", response.formValues[0]);
+                updateBlockState(block, "ican:enabledByRedstone", response.formValues[1]);
+                updateBlockState(block, "ican:units", response.formValues[2]);
+
+                clockActivate(block);
             });
         });
     }
-}
+};
 
-world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
-    blockComponentRegistry.registerCustomComponent(
-        "ican:rs_clock_menu",
-        rsClockMenuComponent
-    );
-});
-
-/** @type {import("@minecraft/server").BlockCustomComponent} */
+/** 
+ * @type {import("@minecraft/server").BlockCustomComponent}
+ */
 const clockTriggerComponent = {
     onTick(event) {
-        if (event.block.permutation.getState("ican:running") == false && (event.block.permutation.getState("ican:enabled") == true || (event.block.permutation.getState("ican:enabledByRedsone") == true && event.block.permutation.getState("ican:inputEnabled") == true))) {
-            let interval = event.block.permutation.getState("ican:iSingleMultiplier");
-            let duration = event.block.permutation.getState("ican:dSingleMultiplier");
-            if (event.block.permutation.getState("ican:iMultipleOfTen") == true)
-                interval = interval * 10;
-            if (event.block.permutation.getState("ican:dMultipleOfTen") == true)
-                duration = duration * 10;
-            event.block.setPermutation(event.block.permutation.withState("ican:running", true));
-            clockActivate(event.block, interval, duration);
+        const block = event.block;
+        if (block && !getBlockState(block, "ican:running") && isClockActive(block)) {
+            updateBlockState(block, "ican:running", true);
+            clockActivate(block);
         }
     }
-
-}
-
-world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
-    blockComponentRegistry.registerCustomComponent(
-        "ican:rs_clock_trigger",
-        clockTriggerComponent
-    );
-});
+};
 
 /**
- * @param {Block} block
- * @param {Integer} interval
- * @param {Integer} duration
+ * REGISTERING CUSTOM COMPONENTS
  */
-function clockActivate(block, interval, duration) {
-    if (block.permutation.getState("ican:enabled") == false && (block.permutation.getState("ican:enabledByRedsone") == false || block.permutation.getState("ican:inputEnabled") == false)) {
-        block.setPermutation(block.permutation.withState("ican:output", false));
-        block.setPermutation(block.permutation.withState("ican:running", false));
-        return;
-    }
-    let units = block.permutation.getState("ican:units");
-    if (units) {
-        system.runInterval(() => {
-            if (block.permutation.getState("ican:enabled") == false && (block.permutation.getState("ican:enabledByRedsone") == false || block.permutation.getState("ican:inputEnabled") == false)) {
-                block.setPermutation(block.permutation.withState("ican:output", false));
-                block.setPermutation(block.permutation.withState("ican:running", false));
-                return;
-            }
-            block.setPermutation(block.permutation.withState("ican:output", true));
-            system.runTimeout(() => {
-                if (block.permutation.getState("ican:enabled") == false && (block.permutation.getState("ican:enabledByRedsone") == false || block.permutation.getState("ican:inputEnabled") == false)) {
-                    block.setPermutation(block.permutation.withState("ican:output", false));
-                    block.setPermutation(block.permutation.withState("ican:running", false));
-                    return;
-                }
-                block.setPermutation(block.permutation.withState("ican:output", false));
-            }, duration);
-        }, interval + duration);
-    }
-    else {
-        system.runInterval(() => {
-            if (block.permutation.getState("ican:enabled") == false && (block.permutation.getState("ican:enabledByRedsone") == false || block.permutation.getState("ican:inputEnabled") == false)) {
-                block.setPermutation(block.permutation.withState("ican:output", false));
-                block.setPermutation(block.permutation.withState("ican:running", false));
-                return;
-            }
-            block.setPermutation(block.permutation.withState("ican:output", true));
-            system.runTimeout(() => {
-                if (block.permutation.getState("ican:enabled") == false && (block.permutation.getState("ican:enabledByRedsone") == false || block.permutation.getState("ican:inputEnabled") == false)) {
-                    block.setPermutation(block.permutation.withState("ican:output", false));
-                    block.setPermutation(block.permutation.withState("ican:running", false));
-                    return;
-                }
-                block.setPermutation(block.permutation.withState("ican:output", false));
-            }, duration * 20);
-        }, (interval + duration) * 20);
-    }
-}
+world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
+    blockComponentRegistry.registerCustomComponent("ican:rs_clock_menu", rsClockMenuComponent);
+    blockComponentRegistry.registerCustomComponent("ican:rs_clock_trigger", clockTriggerComponent);
+});
