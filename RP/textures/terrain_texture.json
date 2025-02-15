@@ -147,6 +147,84 @@
 		},
 		"ican_sr_flipflop_enable_both": {
 			"textures": "textures/blocks/srflip/SRFLIPFLOP_ENABLE_BOTH"
+		},
+		"ican_jk_flipflop_off": {
+			"textures": "textures/blocks/jkflip/JKFLIPFLOP_OFF"
+		},
+		"ican_jk_flipflop_left_off": {
+			"textures": "textures/blocks/jkflip/JKFLIPFLOP_LEFT_OFF"
+		},
+		"ican_jk_flipflop_left_on": {
+			"textures": "textures/blocks/jkflip/JKFLIPFLOP_LEFT_ON"
+		},
+		"ican_jk_flipflop_right_off": {
+			"textures": "textures/blocks/jkflip/JKFLIPFLOP_RIGHT_OFF"
+		},
+		"ican_jk_flipflop_right_on": {
+			"textures": "textures/blocks/jkflip/JKFLIPFLOP_RIGHT_ON"
+		},
+		"ican_jk_flipflop_both_off": {
+			"textures": "textures/blocks/jkflip/JKFLIPFLOP_BOTH_OFF"
+		},
+		"ican_jk_flipflop_both_on": {
+			"textures": "textures/blocks/jkflip/JKFLIPFLOP_BOTH_ON"
+		},
+		"ican_jk_flipflop_none_on": {
+			"textures": "textures/blocks/jkflip/JKFLIPFLOP_NONE_ON"
+		},
+		"ican_jk_flipflop_enable_off": {
+			"textures": "textures/blocks/jkflip/JKFLIPFLOP_ENABLE_OFF"
+		},
+		"ican_jk_flipflop_enable_on": {
+			"textures": "textures/blocks/jkflip/JKFLIPFLOP_ENABLE_ON"
+		},
+		"ican_jk_flipflop_enable_left": {
+			"textures": "textures/blocks/jkflip/JKFLIPFLOP_ENABLE_LEFT"
+		},
+		"ican_jk_flipflop_enable_right": {
+			"textures": "textures/blocks/jkflip/JKFLIPFLOP_ENABLE_RIGHT"
+		},
+		"ican_jk_flipflop_enable_both_off": {
+			"textures": "textures/blocks/jkflip/JKFLIPFLOP_ENABLE_BOTH_OFF"
+		},
+		"ican_jk_flipflop_enable_both_on": {
+			"textures": "textures/blocks/jkflip/JKFLIPFLOP_ENABLE_BOTH_ON"
+		},
+		"ican_t_flipflop_off": {
+			"textures": "textures/blocks/tflip/TFLIPFLOP_OFF_NONE"
+		},
+		"ican_t_flipflop_on": {
+			"textures": "textures/blocks/tflip/TFLIPFLOP_ON_NONE"
+		},
+		"ican_t_flipflop_off_input": {
+			"textures": "textures/blocks/tflip/TFLIPFLOP_OFF_INPUT"
+		},
+		"ican_t_flipflop_on_input": {
+			"textures": "textures/blocks/tflip/TFLIPFLOP_ON_INPUT"
+		},
+		"ican_t_flipflop_off_enable": {
+			"textures": "textures/blocks/tflip/TFLIPFLOP_OFF_ENABLE"
+		},
+		"ican_t_flipflop_on_enable": {
+			"textures": "textures/blocks/tflip/TFLIPFLOP_ON_ENABLE"
+		},
+		"ican_t_flipflop_toggle_off": {
+			"textures": "textures/blocks/tflip/TFLIPFLOP_TOGGLE_OFF"
+		},
+		"ican_t_flipflop_toggle_on": {
+			"textures": "textures/blocks/tflip/TFLIPFLOP_TOGGLE_ON"
+		},
+		"ican_rs_junction_off": {
+			"textures": "textures/blocks/rsjunction/RS_JUNCTION_OFF"
+		},
+		"ican_rs_junction_bottom": {
+			"textures": "textures/blocks/rsjunction/RS_JUNCTION_BOTTOM"
+		},
+		"ican_rs_junction_top": {
+			"textures": "textures/blocks/rsjunction/RS_JUNCTION_TOP"
+		},
+		"ican_rs_junction_both": {
+			"textures": "textures/blocks/rsjunction/RS_JUNCTION_BOTH"
 		}
 	}
 }

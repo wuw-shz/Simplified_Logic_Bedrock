@@ -33,5 +33,14 @@
 	},
 	"ican:sr_flipflop": {
 		"sound": "stone"
+	},
+	"ican:jk_flipflop": {
+		"sound": "stone"
+	},
+	"ican:t_flipflop": {
+		"sound": "stone"
+	},
+	"ican:rs_junction": {
+		"sound": "stone"
 	}
 }

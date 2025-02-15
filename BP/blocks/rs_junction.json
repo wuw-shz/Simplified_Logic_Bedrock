@@ -1,0 +1,165 @@
+{
+	"format_version": "1.19.80",
+	"minecraft:block": {
+		"description": {
+			"identifier": "ican:rs_junction",
+			"menu_category": {
+				"category": "items",
+				"group": "itemGroup.name.advanced"
+			},
+			"properties": {
+				"ican:facing_direction": [
+					0,
+					1,
+					2,
+					3
+				],
+				"ican:input_direction1": [
+					0,
+					1
+				],
+				"ican:input_direction2": [
+					0,
+					1
+				],
+				"ican:output1": {
+					"type": "boolean",
+					"values": [
+						false,
+						true
+					],
+					"default": false
+				},
+				"ican:output2": {
+					"type": "boolean",
+					"values": [
+						false,
+						true
+					],
+					"default": false
+				}
+			}
+		},
+		"components": {
+			"minecraft:geometry": "geometry.rs_junction",
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "ican_rs_junction_off",
+					"render_method": "alpha_test"
+				}
+			},
+			"minecraft:collision_box": {
+				"size": [
+					16,
+					4,
+					16
+				]
+			},
+			"minecraft:selection_box": {
+				"size": [
+					16,
+					4,
+					16
+				]
+			},
+			"minecraft:tick": {
+				"interval_range": [
+					1,
+					1
+				],
+				"looping": true
+			},
+			"minecraft:custom_components": [
+				"ican:directional_block",
+				"ican:redstone_junction_detection",
+				"ican:trigger_multi_output_directional"
+			]
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('ican:facing_direction') == 0",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('ican:facing_direction') == 1",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							0,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('ican:facing_direction') == 2",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							270,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('ican:facing_direction') == 3",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('ican:output1') == true && q.block_state('ican:output2') == false",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ican_rs_junction_bottom",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 8
+				}
+			},
+			{
+				"condition": "q.block_state('ican:output2') == true && q.block_state('ican:output1') == false",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ican_rs_junction_top",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 8
+				}
+			},
+			{
+				"condition": "q.block_state('ican:output1') == true && q.block_state('ican:output2') == true",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ican_rs_junction_both",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 15
+				}
+			}
+		]
+	}
+}

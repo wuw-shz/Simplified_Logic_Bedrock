@@ -117,11 +117,12 @@ const dFlipFlopComponent = {
     onTick(event) {
         let clock = event.block.permutation.getState("ican:clkEnabled");
         let input = event.block.permutation.getState("ican:inputEnabled");
-        if (clock == true)
+        if (clock == true) {
             if (input == true)
                 event.block.setPermutation(event.block.permutation.withState("ican:output", true));
             else
                 event.block.setPermutation(event.block.permutation.withState("ican:output", false));
+        }
     }
 
 }
@@ -153,5 +154,79 @@ world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
     blockComponentRegistry.registerCustomComponent(
         "ican:sr_flipflop",
         srFlipFlopComponent
+    );
+});
+
+/** @type {import("@minecraft/server").BlockCustomComponent} */
+const jkFlipFlopComponent = {
+    onTick(event) {
+        let clock = event.block.permutation.getState("ican:inputEnabled");
+        let inputS = event.block.permutation.getState("ican:leftEnabled");
+        let inputR = event.block.permutation.getState("ican:rightEnabled");
+        let output = event.block.permutation.getState("ican:output");
+        let toggle = event.block.permutation.getState("ican:toggle");
+        if (clock == true) {
+            if (inputS == true && inputR == false) {
+                event.block.setPermutation(event.block.permutation.withState("ican:output", true));
+                event.block.setPermutation(event.block.permutation.withState("ican:toggle", false));
+            }
+            else if (inputS == false && inputR == true) {
+                event.block.setPermutation(event.block.permutation.withState("ican:output", false));
+                event.block.setPermutation(event.block.permutation.withState("ican:toggle", false));
+            }
+            else if (inputS == true && inputR == true && output == false && toggle == false) {
+                event.block.setPermutation(event.block.permutation.withState("ican:output", true));
+                event.block.setPermutation(event.block.permutation.withState("ican:toggle", true));
+            }
+            else if (inputS == true && inputR == true && output == true && toggle == false) {
+                event.block.setPermutation(event.block.permutation.withState("ican:output", false));
+                event.block.setPermutation(event.block.permutation.withState("ican:toggle", true));
+            }
+            else if (inputS == false && inputR == false && toggle == true) {
+                event.block.setPermutation(event.block.permutation.withState("ican:toggle", false));
+            }
+        }
+        else
+            event.block.setPermutation(event.block.permutation.withState("ican:toggle", false));
+    }
+
+}
+
+world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
+    blockComponentRegistry.registerCustomComponent(
+        "ican:jk_flipflop",
+        jkFlipFlopComponent
+    );
+});
+
+const tFlipFlopComponent = {
+    onTick(event) {
+        let clock = event.block.permutation.getState("ican:clkEnabled");
+        let input = event.block.permutation.getState("ican:inputEnabled");
+        let output = event.block.permutation.getState("ican:output");
+        let toggle = event.block.permutation.getState("ican:toggle");
+        if (clock == true) {
+            if (input == true && output == false && toggle == false) {
+                event.block.setPermutation(event.block.permutation.withState("ican:output", true));
+                event.block.setPermutation(event.block.permutation.withState("ican:toggle", true));
+            }
+            else if (input == true && output == true && toggle == false) {
+                event.block.setPermutation(event.block.permutation.withState("ican:output", false));
+                event.block.setPermutation(event.block.permutation.withState("ican:toggle", true));
+            }
+            else if (input == false && toggle == true) {
+                event.block.setPermutation(event.block.permutation.withState("ican:toggle", false));
+            }
+        }
+        else
+            event.block.setPermutation(event.block.permutation.withState("ican:toggle", false));
+    }
+
+}
+
+world.beforeEvents.worldInitialize.subscribe(({ blockComponentRegistry }) => {
+    blockComponentRegistry.registerCustomComponent(
+        "ican:t_flipflop",
+        tFlipFlopComponent
     );
 });

@@ -8,3 +8,6 @@ tile.ican:xnor_gate.name=XNOR Gate
 tile.ican:redstone_clock.name=Redstone Clock
 tile.ican:d_flipflop.name=D Latch / Flip-Flop
 tile.ican:sr_flipflop.name=SR Latch / Flip-Flop
+tile.ican:jk_flipflop.name=JK Latch / Flip-Flop
+tile.ican:t_flipflop.name=T Latch / Flip-Flop
+tile.ican:rs_junction.name=Redstone Junction
