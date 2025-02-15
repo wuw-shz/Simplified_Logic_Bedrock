@@ -13,7 +13,7 @@ This addon currently includes the following:
 - XNOR Gate
 - NOT Gate
 - Advanced Redstone Clock
-- Latches / Flipflops (Latch with fixed signal on enable, FlipFlop with Advamced Clock on enable)
+- SR/D/JK/T Latches / Flipflops (Latch with fixed signal on enable, FlipFlop with Advanced Clock on enable)
 
 All of these can only work in bedrock through a repeater placed in front. The repeater auto-places, so assume each gate is 2 blocks deep.
 
